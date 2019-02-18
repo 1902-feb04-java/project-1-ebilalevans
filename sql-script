@@ -1,0 +1,44 @@
+-- Employee Reimbursement
+CREATE DATABASE ebilalevansproject1;
+CREATE SCHEMA projectSchema;
+
+SET search_path TO projectSchema;
+
+CREATE TABLE projectSchema.employees (
+	id SERIAL NOT NULL,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	address_line1 VARCHAR(100) NOT NULL,
+	address_line2 VARCHAR(100) NOT NULL,
+	manager_id INTEGER NULL, -- set NULL because when you might add an employee before assigning them a manager
+	username VARCHAR(100) NULL, --could also be set null, because the employee may have not set up a username
+	password VARCHAR(100) NOT NULL, --will set a random password at initialization
+	last_updated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	date_hired TIMESTAMP WITH TIME ZONE NOT NULL,
+	CONSTRAINT pk_employee_id PRIMARY KEY (id)
+);
+
+CREATE TABLE projectSchema.managers (
+	id SERIAL NOT NULL,
+	employee_id INTEGER NOT NULL,
+	CONSTRAINT pk_manager_id PRIMARY KEY (id),
+	CONSTRAINT fk_manager_info
+		FOREIGN KEY (employee_id) REFERENCES employees(id)
+);
+
+ALTER TABLE employees
+	ADD CONSTRAINT fk_managers
+	FOREIGN KEY (manager_id) REFERENCES managers(id);
+	
+CREATE TABLE projectSchema.employee_reimbursement (
+	id SERIAL NOT NULL,
+	date_submitted TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	employee_id INTEGER NOT NULL,
+	amount_requested NUMERIC(8,2) NOT NULL,
+	CONSTRAINT pk_reimbursement_id PRIMARY KEY (id),
+	CONSTRAINT fk_employee_id
+		FOREIGN KEY (employee_id) REFERENCES employees (id)
+);
+
+
+
