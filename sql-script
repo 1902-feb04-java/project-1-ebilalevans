@@ -21,6 +21,7 @@ CREATE TABLE projectSchema.employees (
 CREATE TABLE projectSchema.managers (
 	id SERIAL NOT NULL,
 	employee_id INTEGER NOT NULL,
+
 	CONSTRAINT pk_manager_id PRIMARY KEY (id),
 	CONSTRAINT fk_manager_info
 		FOREIGN KEY (employee_id) REFERENCES employees(id)
@@ -35,6 +36,7 @@ CREATE TABLE projectSchema.employee_reimbursements (
 	date_submitted TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	employee_id INTEGER NOT NULL,
 	amount_requested NUMERIC(8,2) NOT NULL,
+	fulfilled BOOLEAN DEFAULT false,
 	CONSTRAINT pk_reimbursements_id PRIMARY KEY (id),
 	CONSTRAINT fk_employee_id
 		FOREIGN KEY (employee_id) REFERENCES employees (id)
