@@ -1,4 +1,4 @@
-package com.revature.employeeInfo;
+package com.revature.reimbursementInfo;
 
 public class ReimbursementGetter {
     

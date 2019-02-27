@@ -1,11 +1,7 @@
 package com.revature.employeeInfo;
 
 public class Employee {
-    public String name;
-    String address;
-    String manager;
-    String dateHired;
-    String id;
+    public String name, address, manager, dateHired, id;
 
     Employee(String name, String address, String manager, String dateHired, String id){
         this.name = name;
