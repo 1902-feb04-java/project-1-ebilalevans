@@ -37,6 +37,7 @@ CREATE TABLE projectSchema.employee_reimbursements (
 	employee_id INTEGER NOT NULL,
 	amount_requested NUMERIC(8,2) NOT NULL,
 	status VARCHAR(50) DEFAULT 'pending',
+	resolved_manager_id INTEGER, 
 	CONSTRAINT pk_reimbursements_id PRIMARY KEY (id),
 	CONSTRAINT fk_employee_id
 		FOREIGN KEY (employee_id) REFERENCES employees (id)

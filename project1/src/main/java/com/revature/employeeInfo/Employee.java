@@ -1,7 +1,7 @@
 package com.revature.employeeInfo;
 
 public class Employee {
-    String name;
+    public String name;
     String address;
     String manager;
     String dateHired;

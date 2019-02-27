@@ -9,10 +9,7 @@ import java.sql.Statement;
 public class EmployeeGetter {
 
     public static Employee getInfo(String id) {  
-        String name;
-        String address;
-        String manager;
-        String dateHired;
+        String name, address, manager, dateHired;
 
         String url = "jdbc:postgresql://postgres.cvoui7q38caj.us-east-2.rds.amazonaws.com:5432/postgres";
         String username = "postgres";
