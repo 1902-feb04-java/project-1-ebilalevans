@@ -36,7 +36,7 @@ CREATE TABLE projectSchema.employee_reimbursements (
 	date_submitted TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	employee_id INTEGER NOT NULL,
 	amount_requested NUMERIC(8,2) NOT NULL,
-	fulfilled BOOLEAN DEFAULT false,
+	status VARCHAR(50) DEFAULT 'pending',
 	CONSTRAINT pk_reimbursements_id PRIMARY KEY (id),
 	CONSTRAINT fk_employee_id
 		FOREIGN KEY (employee_id) REFERENCES employees (id)

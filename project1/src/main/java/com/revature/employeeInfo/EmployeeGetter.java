@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class EmployeeGetter {
-    String name;
-    String address;
-    String manager;
-    String dateHired;
-    String id;
 
-    EmployeeGetter(url, username, password, id) {  
-        
+    public static Employee getInfo(String id) {  
+        String name;
+        String address;
+        String manager;
+        String dateHired;
+
+        String url = "jdbc:postgresql://postgres.cvoui7q38caj.us-east-2.rds.amazonaws.com:5432/postgres";
+        String username = "postgres";
+        String password = "pgAdmin";
+
         try(Connection connection = DriverManager.getConnection(url, username, password)) {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM employees WHERE id = " + id);
@@ -23,8 +26,7 @@ public class EmployeeGetter {
                 name = rs.getString("first_name") + rs.getString("last_name");
                 address = rs.getString("address_line1") + rs.getString("address_line2");
                 manager = rs.getString("manager_id");
-                dateHired = rs.getString("date_hired");
-                this.id = id;
+                dateHired = rs.getString("date_hired"); 
             }
 
             rs.close();
@@ -37,6 +39,5 @@ public class EmployeeGetter {
         return employee;
 
     }
-
 
 }
