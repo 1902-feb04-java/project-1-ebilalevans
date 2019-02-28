@@ -8,8 +8,6 @@ public class ReimbursementGetter {
 
         //try-catch to get reimbursements from SQL table
 
-
-
         Reimbursement reimbursement = new Reimbursement(id,submitDate,employee,amount,status,manager);
         return reimbursement;
     }

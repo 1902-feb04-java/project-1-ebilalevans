@@ -11,12 +11,13 @@ CREATE TABLE projectSchema.employees (
 	address_line1 VARCHAR(100) NOT NULL,
 	address_line2 VARCHAR(100) NOT NULL,
 	manager_id INTEGER NULL, -- set NULL because when you might add an employee before assigning them a manager
-	username VARCHAR(100) NULL, --could also be set null, because the employee may have not set up a username
-	password VARCHAR(100) NOT NULL, --will set a random password at initialization
+	email VARCHAR(100) NULL, --could also be set null, because the employee may have not set up a username
+	password VARCHAR(100) NOT NULL DEFAULT 'password', --will set a random password at initialization
 	last_updated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	date_hired TIMESTAMP WITH TIME ZONE NOT NULL,
 	CONSTRAINT pk_employee_id PRIMARY KEY (id)
 );
+
 
 CREATE TABLE projectSchema.managers (
 	id SERIAL NOT NULL,
@@ -43,5 +44,18 @@ CREATE TABLE projectSchema.employee_reimbursements (
 		FOREIGN KEY (employee_id) REFERENCES employees (id)
 );
 
+INSERT INTO employees (first_name, last_name, address_line1, address_line2) VALUES
+	('Tammy', 'Ordway', '914 Dancing Dove Lane', 'Garden City, NY 11530'),
+	('Deborah', 'Losada', '860 Cambridge Place', 'Salisbury, MD 21875'),
+	('Antoinette', 'Dryden', '2006 Bell Street', 'New York, NY 10005'),
+	('Gregory', 'O'conner', '2462 Park Avenue', 'Sacramento, CA 95814'),
+	('Ana', 'Bauer', '2102 Terry Lane', 'Orlando, FL 32810'),
+	('Dan', 'Ross', '2119 Birch Street','Indianapolis, IN 46268'),
+	('Darlene', 'Baldwin', '3367 North Avenue','Burr, NE 68324'),
+	('Gordon', 'Fisher', '4373 Fort Street','Bath, NC 27808'),
+	('Gwendolyn', 'Hale', '2324 Nancy Street', 'Raleigh, NC 27609'),
+	('Paul', 'Cline', '1752 Woodlawn Drive', 'Milwaukee, WI 53207'),
+	('Nelson', 'Martinez', '2761 Romines Mill Road', 'Dallas, TX 75219'),
+	('Obiuto', 'Oguejiofor', '3566 Whispering Pines Circle', 'Richardson, TX 75081');
 
 
